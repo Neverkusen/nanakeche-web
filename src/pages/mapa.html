@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nanakeche — Mapa de sororidad</title>
+
+
+  <link rel="stylesheet" href="../css/user-mapa.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+
+<body>
+  <div class="user-app">
+    <!-- Topbar -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <a href="../index.html"></a>
+          <img src="../Assets/Nanakeche_logo_Sn_fondo.png" alt="Nanakeche logo" />
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Nanakeche</div>
+          <div class="brand-sub">Mapa de sororidad</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="helpBtn" aria-label="Ver instrucciones" title="Instrucciones">?</button>
+        <button class="icon-btn" id="panelToggle" aria-label="Abrir panel" aria-expanded="true" title="Panel">☰</button>
+
+        <div class="profile">
+          <img class="avatar"
+               src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=160&q=60"
+               alt="avatar" />
+          <span class="profile-name">Hanna</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Map -->
+    <main class="map-stage">
+      <div id="map" aria-label="Mapa de sororidad"></div>
+
+      <!-- Floating quick actions -->
+      <div class="fab-stack">
+        <button class="fab" id="locateBtn" title="Ir a mi ubicación" aria-label="Ir a mi ubicación">📍</button>
+        <button class="fab" id="addPinBtn" title="Agregar punto" aria-label="Agregar punto">+</button>
+      </div>
+
+      <!-- Panel -->
+      <aside class="panel is-open" id="panel" aria-label="Panel de mapa">
+        <div class="panel-header">
+          <div class="panel-title">
+            <h2>Explorar</h2>
+            <p>Historias breves en lugares de Colima y Villa de Álvarez.</p>
+          </div>
+
+          <button class="panel-close" id="panelClose" aria-label="Cerrar panel">✕</button>
+        </div>
+
+        <div class="panel-tabs" role="tablist" aria-label="Secciones">
+          <button class="tab active" data-tab="explorar" role="tab" aria-selected="true">Explorar</button>
+          <button class="tab" data-tab="agregar" role="tab" aria-selected="false">Agregar</button>
+          <button class="tab" data-tab="filtros" role="tab" aria-selected="false">Filtros</button>
+          <button class="tab" data-tab="info" role="tab" aria-selected="false">Info</button>
+        </div>
+
+        <!-- Explorar -->
+        <section class="tab-panel active" id="tab-explorar" role="tabpanel">
+          <div class="search">
+            <input id="searchInput" type="search" placeholder="Buscar por palabra (ej. “taller”, “café”)…" />
+          </div>
+
+          <div class="list" id="storyList" aria-label="Lista de historias">
+            <article class="story-card" data-text="café encontrándome a mí misma">
+              <div class="story-meta">
+                <span class="pill">Experiencia</span>
+                <span class="muted">• zona centro</span>
+              </div>
+              <p class="story-text">“Fui por un café y terminé encontrándome a mí misma.”</p>
+              <button class="link-btn" data-focus="19.2385,-103.7165">Ver en mapa</button>
+            </article>
+
+            <article class="story-card" data-text="evento me sentí acompañada">
+              <div class="story-meta">
+                <span class="pill">Sororidad</span>
+                <span class="muted">• taller</span>
+              </div>
+              <p class="story-text">“Fui al evento y fue lo mejor que me pasó: me sentí acompañada.”</p>
+              <button class="link-btn" data-focus="19.2468,-103.7268">Ver en mapa</button>
+            </article>
+
+            <article class="story-card" data-text="churros risa amigas">
+              <div class="story-meta">
+                <span class="pill">Recuerdo</span>
+                <span class="muted">• comida</span>
+              </div>
+              <p class="story-text">“Aquí me reí con mis amigas y volvimos a respirar.”</p>
+              <button class="link-btn" data-focus="19.2522,-103.7186">Ver en mapa</button>
+            </article>
+          </div>
+        </section>
+
+        <!-- Agregar -->
+        <section class="tab-panel" id="tab-agregar" role="tabpanel">
+          <div class="hint">
+            <strong>Cómo agregar:</strong>
+            <ol>
+              <li>Presionar <b>+</b> o tocar el mapa donde va el pin.</li>
+              <li>Escribir una historia breve.</li>
+              <li>Enviar (luego se conecta a Firebase).</li>
+            </ol>
+          </div>
+
+          <form class="form" id="storyForm">
+            <label class="field">
+              <span>Título opcional</span>
+              <input type="text" id="titleInput" placeholder="Ej. “Un día distinto”" maxlength="60" />
+            </label>
+
+            <label class="field">
+              <span>Historia (máx. 280)</span>
+              <textarea id="storyInput" rows="5" maxlength="280" placeholder="Escribe algo breve, sin datos personales…"></textarea>
+              <div class="counter"><span id="charCount">0</span>/280</div>
+            </label>
+
+            <label class="field">
+              <span>Etiqueta</span>
+              <select id="tagSelect">
+                <option value="Experiencia">Experiencia</option>
+                <option value="Sororidad">Sororidad</option>
+                <option value="Taller">Taller</option>
+                <option value="Recuerdo">Recuerdo</option>
+              </select>
+            </label>
+
+            <div class="coords">
+              <div class="coord">
+                <span class="muted">Lat</span>
+                <input id="latInput" type="text" placeholder="—" readonly />
+              </div>
+              <div class="coord">
+                <span class="muted">Lng</span>
+                <input id="lngInput" type="text" placeholder="—" readonly />
+              </div>
+            </div>
+
+            <button class="primary" type="submit">Enviar historia</button>
+
+            <p class="small muted">
+              Si no hay coordenadas, tocar el mapa para seleccionar el lugar.
+            </p>
+          </form>
+        </section>
+
+        <!-- Filtros -->
+        <section class="tab-panel" id="tab-filtros" role="tabpanel">
+          <div class="filters">
+            <label class="check">
+              <input type="checkbox" checked />
+              <span>Mostrar experiencias</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" checked />
+              <span>Mostrar sororidad</span>
+            </label>
+            <label class="check">
+              <input type="checkbox" checked />
+              <span>Mostrar talleres</span>
+            </label>
+
+            <div class="divider"></div>
+
+            <label class="field">
+              <span>Rango (mock)</span>
+              <input type="range" min="1" max="10" value="7" />
+              <span class="small muted">Más cerca ↔ más amplio</span>
+            </label>
+
+            <button class="ghost" type="button" id="resetFilters">Restablecer</button>
+          </div>
+        </section>
+
+        <!-- Info -->
+        <section class="tab-panel" id="tab-info" role="tabpanel">
+          <div class="info">
+            <h3>Instrucciones</h3>
+            <ul>
+              <li>Tocar un pin para leer la historia.</li>
+              <li>Usar <b>+</b> para agregar una historia.</li>
+              <li>Evitar datos personales y ubicar de forma general.</li>
+            </ul>
+
+            <h3>Políticas</h3>
+            <ul>
+              <li>No publicar direcciones exactas, teléfonos, nombres completos o información sensible.</li>
+              <li>No contenido de odio ni acoso. Reportar si algo no cumple.</li>
+              <li>Este mapa busca crear comunidad y seguridad.</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <button class="ghost" type="button" id="reportBtn">Reportar un punto</button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Overlay -->
+      <div class="sheet-overlay" id="sheetOverlay" aria-hidden="true"></div>
+
+      <!-- Mini modal -->
+      <div class="mini-modal" id="miniModal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="mini-card">
+          <div class="mini-head">
+            <strong>Cómo usar el mapa</strong>
+            <button class="icon-btn" id="miniClose" aria-label="Cerrar">✕</button>
+          </div>
+          <ol class="mini-ol">
+            <li>Tocar un pin para leer la historia.</li>
+            <li>Usar <b>+</b> para agregar una historia.</li>
+            <li>Evitar datos personales y ubicar de forma general.</li>
+          </ol>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Bounds aproximados Colima
+      const colimaBounds = L.latLngBounds([18.7, -104.7], [19.6, -103.3]);
+
+      const map = L.map("map", {
+        maxBounds: colimaBounds,
+        maxBoundsViscosity: 1,
+        zoomControl: true,
+      });
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18 }).addTo(map);
+
+      map.fitBounds(colimaBounds, { padding: [20, 20] });
+      map.setMinZoom(map.getZoom());
+
+      const markers = [
+        { lat: 19.2468, lng: -103.7268, tag: "Sororidad", text: "Fui al evento y fue lo mejor que me pasó: me sentí acompañada." },
+        { lat: 19.2385, lng: -103.7165, tag: "Experiencia", text: "Fui por un café y terminé encontrándome a mí misma." },
+        { lat: 19.2522, lng: -103.7186, tag: "Recuerdo", text: "Aquí me reí con mis amigas y volvimos a respirar." },
+      ];
+
+      const leafletMarkers = markers.map((m) =>
+        L.marker([m.lat, m.lng]).addTo(map).bindPopup(`<b>${m.tag}</b><br>${m.text}`)
+      );
+
+      map.whenReady(() => map.invalidateSize());
+
+      // Tabs
+      const tabs = document.querySelectorAll(".tab");
+      const panels = {
+        explorar: document.getElementById("tab-explorar"),
+        agregar: document.getElementById("tab-agregar"),
+        filtros: document.getElementById("tab-filtros"),
+        info: document.getElementById("tab-info"),
+      };
+
+      function openTab(name) {
+        tabs.forEach(t => {
+          const active = t.dataset.tab === name;
+          t.classList.toggle("active", active);
+          t.setAttribute("aria-selected", String(active));
+        });
+
+        Object.entries(panels).forEach(([k, el]) => {
+          if (!el) return;
+          el.classList.toggle("active", k === name);
+        });
+      }
+
+      tabs.forEach(t => t.addEventListener("click", () => openTab(t.dataset.tab)));
+
+      // Panel open/close (desktop + mobile)
+      const panel = document.getElementById("panel");
+      const panelToggle = document.getElementById("panelToggle");
+      const panelClose = document.getElementById("panelClose");
+      const sheetOverlay = document.getElementById("sheetOverlay");
+      const mqPanel = window.matchMedia("(max-width: 900px)");
+
+      function setPanel(open){
+        if (!panel) return;
+        panel.classList.toggle("is-open", open);
+
+        if (sheetOverlay) sheetOverlay.classList.toggle("is-open", open);
+        if (panelToggle) panelToggle.setAttribute("aria-expanded", String(open));
+      }
+
+      function openPanelTo(tabName){
+        openTab(tabName);
+        setPanel(true);
+      }
+
+      function syncPanelDefault(){
+        // Desktop: open | Mobile: closed
+        setPanel(!mqPanel.matches);
+      }
+      syncPanelDefault();
+
+      if (mqPanel.addEventListener) mqPanel.addEventListener("change", syncPanelDefault);
+      else mqPanel.addListener(syncPanelDefault);
+
+      // Hamburger toggle (desktop)
+      if (panelToggle){
+        panelToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = panel.classList.contains("is-open");
+          setPanel(!isOpen);
+          if (!isOpen) openTab("explorar");
+        });
+      }
+
+      if (panelClose) panelClose.addEventListener("click", () => setPanel(false));
+      if (sheetOverlay) sheetOverlay.addEventListener("click", () => setPanel(false));
+
+      // Help modal
+      const helpBtn = document.getElementById("helpBtn");
+      const miniModal = document.getElementById("miniModal");
+      const miniClose = document.getElementById("miniClose");
+
+      function setHelp(open) {
+        if (!miniModal) return;
+        miniModal.classList.toggle("is-open", open);
+        miniModal.setAttribute("aria-hidden", String(!open));
+      }
+
+      if (helpBtn) helpBtn.addEventListener("click", () => setHelp(true));
+      if (miniClose) miniClose.addEventListener("click", () => setHelp(false));
+      if (miniModal) {
+        miniModal.addEventListener("click", (e) => {
+          if (e.target === miniModal) setHelp(false);
+        });
+      }
+
+      // Search (safe)
+      const searchInput = document.getElementById("searchInput");
+      const cards = Array.from(document.querySelectorAll(".story-card"));
+      if (searchInput){
+        searchInput.addEventListener("input", () => {
+          const q = (searchInput.value || "").toLowerCase().trim();
+          cards.forEach(c => {
+            const txt = (c.dataset.text || "").toLowerCase();
+            c.style.display = !q || txt.includes(q) ? "" : "none";
+          });
+        });
+      }
+
+      // "Ver en mapa"
+      document.querySelectorAll(".link-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const [lat, lng] = btn.dataset.focus.split(",").map(Number);
+          map.setView([lat, lng], Math.max(map.getZoom(), 15), { animate: true });
+          const idx = markers.findIndex(m => m.lat === lat && m.lng === lng);
+          if (idx >= 0) leafletMarkers[idx].openPopup();
+        });
+      });
+
+      // Add pin workflow (mock)
+      const addPinBtn = document.getElementById("addPinBtn");
+      const latInput = document.getElementById("latInput");
+      const lngInput = document.getElementById("lngInput");
+
+      let pendingLatLng = null;
+
+      function setCoords(latlng) {
+        pendingLatLng = latlng;
+        if (latInput) latInput.value = latlng.lat.toFixed(5);
+        if (lngInput) lngInput.value = latlng.lng.toFixed(5);
+      }
+
+      // FAB “+” -> abre panel y manda a Agregar (mobile + desktop)
+      if (addPinBtn){
+        addPinBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          openPanelTo("agregar");
+        });
+      }
+
+      map.on("click", (e) => {
+        // solo toma coordenadas si está en tab Agregar
+        const isAddOpen = document.getElementById("tab-agregar")?.classList.contains("active");
+        if (!isAddOpen) return;
+        setCoords(e.latlng);
+      });
+
+      // Form counter + submit (mock)
+      const storyInput = document.getElementById("storyInput");
+      const charCount = document.getElementById("charCount");
+      if (storyInput && charCount){
+        storyInput.addEventListener("input", () => (charCount.textContent = String(storyInput.value.length)));
+      }
+
+      const storyForm = document.getElementById("storyForm");
+      if (storyForm){
+        storyForm.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          if (!pendingLatLng) {
+            alert("Selecciona un lugar tocando el mapa para poner el pin.");
+            return;
+          }
+
+          const tag = document.getElementById("tagSelect")?.value || "Experiencia";
+          const text = (storyInput?.value || "").trim();
+          if (!text) {
+            alert("Escribe una historia breve.");
+            return;
+          }
+
+          L.marker([pendingLatLng.lat, pendingLatLng.lng])
+            .addTo(map)
+            .bindPopup(`<b>${tag}</b><br>${text}`)
+            .openPopup();
+
+          storyForm.reset();
+          if (charCount) charCount.textContent = "0";
+          pendingLatLng = null;
+          if (latInput) latInput.value = "";
+          if (lngInput) lngInput.value = "";
+
+          openTab("explorar");
+          alert("Listo. (Mock) Luego esto se manda a Firebase.");
+        });
+      }
+
+      // Locate
+      const locateBtn = document.getElementById("locateBtn");
+      if (locateBtn){
+        locateBtn.addEventListener("click", () => {
+          map.locate({ setView: true, maxZoom: 16 });
+        });
+      }
+
+      map.on("locationerror", () => alert("No se pudo obtener la ubicación."));
+      map.on("locationfound", (e) => {
+        L.circleMarker(e.latlng, { radius: 8 }).addTo(map).bindPopup("Ubicación aproximada");
+      });
+
+      // Mock buttons
+      const reportBtn = document.getElementById("reportBtn");
+      if (reportBtn) reportBtn.addEventListener("click", () => alert("Aquí luego se abre un formulario de reporte (Firebase)."));
+
+      const resetFilters = document.getElementById("resetFilters");
+      if (resetFilters) resetFilters.addEventListener("click", () => alert("Mock: restablecer filtros."));
+    });
+  </script>
+</body>
+</html>
