@@ -12,12 +12,15 @@
   --radius: 22px;
 }
 
-*{ box-sizing:border-box; }
+*{ box-sizing:border-box;
+font-family: 'Lexend', sans-serif;
+}
+
 html,body{ height:100%; }
 
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-family: 'Lexend', sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow: hidden;
