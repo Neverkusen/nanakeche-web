@@ -457,6 +457,34 @@ main {
   margin-bottom: 20px;
 }
 
+.directory-hero {
+  position: relative;
+  /* Imagen sugerida: manos unidas o comunidad */
+  background: url("https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=2000&q=80") center/cover no-repeat;
+  height: 60vh; /* Un poco más corto que el about-hero para priorizar las tarjetas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Reutilizamos el overlay de about para consistencia visual */
+.about-overlay h2 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+/* Clase para compactar el texto y mejorar la legibilidad */
+.compact-text {
+  max-width: 800px; /* Evita que el texto sea demasiado largo horizontalmente */
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
 /* VALORES (agregando Expresión) */
 .value-card {
   background: white;
@@ -552,4 +580,49 @@ main {
 
 .about-cta h2 {
   margin-bottom: 25px;
+}
+
+/* BOTÓN FLOTANTE (Añadir al final de styles.css) */
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--accent); /* #C0411F */
+  color: #FFFFFF;
+  padding: 15px 25px;
+  border-radius: 50px; /* Forma de píldora para ser coherente con el Nav */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(165, 37, 24, 0.3);
+  z-index: 999; /* Por debajo del Navbar si este llegara a solaparse */
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-btn i {
+  font-size: 1.2rem;
+}
+
+.floating-btn span {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.floating-btn:hover {
+  background-color: var(--hover-bg); /* #ED9E38 */
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: 0 6px 20px rgba(237, 158, 56, 0.4);
+}
+
+/* Ocultar el texto en móviles muy pequeños para que solo quede el círculo con el icono */
+@media (max-width: 480px) {
+  .floating-btn span {
+    display: none;
+  }
+  .floating-btn {
+    padding: 15px;
+    border-radius: 50%;
+  }
 }
