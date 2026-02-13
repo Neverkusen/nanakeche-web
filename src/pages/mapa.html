@@ -17,6 +17,37 @@
   </head>
 
   <body>
+    <!--Aviso-->
+   <div id="mapa-instrucciones" class="mapa-modal">
+  <div class="mapa-card">
+
+    <span class="cerrar" onclick="cerrarInstrucciones()">×</span>
+
+    <h1 class="mapa-title">Mapa de Sonoridad</h1>
+
+    <p class="mapa-descripcion">
+      Este espacio reúne voces y reflexiones surgidas en los talleres.
+      Recorre los puntos del mapa para conocer cada experiencia.
+    </p>
+
+    <div class="mapa-divider"></div>
+
+    <h2 class="mapa-subtitle">Cómo usar el mapa</h2>
+
+    <ul class="mapa-instrucciones">
+      <li>Usa el scroll para acercar o alejar.</li>
+      <li>Arrastra para explorar.</li>
+      <li>Haz clic en los marcadores para descubrir experiencias Nanakeche.</li>
+    </ul>
+
+  </div>
+</div>
+
+
+
+  <div id="mapa"></div>
+</section>
+
     <div class="user-app">
       <!-- Topbar -->
       <header class="topbar">
@@ -665,6 +696,10 @@
             alert("Mock: restablecer filtros."),
           );
       });
+      //X para cerrar aviso
+      function cerrarInstrucciones() {
+          document.getElementById("mapa-instrucciones").style.display = "none";
+      }
     </script>
   </body>
 </html>

@@ -771,3 +771,28 @@ main {
     border-radius: 50%;
   }
 }
+
+/*Hero Talleres y Cursos */
+.taller-hero {
+  position: relative;
+  background: url("../Assets/herotalleres.png") center/cover no-repeat;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.taller-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 40px 40px;
+  border-radius: 10px;
+  max-width: 800px;
+
+  backdrop-filter: blur(3px);
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+
