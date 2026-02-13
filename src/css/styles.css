@@ -1,9 +1,10 @@
 :root {
-  --primary: #E88CA3;
-  --secondary: #F0E7D5;
-  --accent: #C0411F;
-  --dark: #3A322C;
-  --light: #FCECE0;
+  --primary: #FFAFAA;   /* Rosa Pastel */
+  --secondary: #F0E7D5; /* Crema / Beige */
+  --accent: #C0411F;    /* Rojo Teja (Botón Activo) */
+  --dark: #3A322C;      /* Marrón Oscuro (Texto) */
+  --light: #F0E7D5;     /* Crema para botones en reposo */
+  --hover-bg: #ED9E38;  /* Naranja Ocre para efectos hover */
 }
 
 /* RESET */
@@ -19,21 +20,67 @@ html, body {
 }
 
 body {
-  background: var(--secondary);
-  color: var(--dark);
+  padding-top: 80px; /* Evita que el Nav tape el inicio del Hero Slider */
 }
 
 
 /* NAVBAR */
 .navbar {
-  background: var(--primary);
-  padding: 15px 40px;
+  background: var(--primary); /* #FFAFAA */
+  padding: 10px 60px;
+  min-height: 80px;
+  position: fixed;    /* Lo mantiene en la pantalla */
+  top: 0;             /* Posición inicial */
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(58, 50, 44, 0.1);
+  transition: top 0.4s ease-in-out; /* Animación suave para ocultar/mostrar */
+}
+
+.navbar--hidden {
+  top: -100px; /* Lo desplaza hacia arriba fuera de la vista */
 }
 
 .navbar .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px; /* Espaciado entre píldoras */
+}
+
+.nav-links li {
+  background: var(--secondary); /* #F0E7D5 */
+  padding: 8px 20px;
+  border-radius: 35px 12px;     /* Forma orgánica de "etiqueta" */
+  transition: all 0.3s ease;
+}
+
+.nav-links li:hover {
+  background: var(--hover-bg); /* #ED9E38 (Naranja Ocre) */
+  border-color: var(--dark); /* Borde marrón para estilo "dibujado a mano" */
+}
+
+.nav-links li.active {
+  background: #A52518; /* Rojo Intenso para resaltar la sección actual */
+  transform: scale(1.1); /* Efecto de crecimiento sutil */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--dark); /* Texto Marrón Oscuro */
+  font-weight: 500;
+  font-family: 'Crimson Pro', serif; /* Tipografía para estilo artesanal */
+  font-size: 1.1rem;
+}
+
+.nav-links li.active a {
+  color: #FFFFFF; /* Texto blanco en botón activo para legibilidad */
 }
 
 .logo {
@@ -43,34 +90,18 @@ body {
 }
 
 .logo img {
-  width: 28px;
-  height: 28px;
+  width: 45px; /* Tamaño equilibrado para navegación fija */
+  height: 45px;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 12px;
+.logo h1.nanakeche {
+  font-size: 2rem; /* Texto más grande para equilibrar el logo */
+  color: var(--dark); /* #3A322C */
+  letter-spacing: -1px; /* Toque editorial moderno */
 }
 
-.nav-links li {
-  background: var(--light);
-  padding: 8px 16px;
-  border-radius: 20px;
-}
-
-.nav-links li.active {
-  background: var(--accent);
-}
-
-.nav-links li.active a {
-  color: white;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--dark);
-  font-weight: 500;
+.logo img:hover {
+  transform: scale(1.1); /* Efecto sutil al pasar el cursor sobre el corazón */
 }
 
 /* HERO FULL WIDTH */
@@ -341,32 +372,65 @@ main {
 }
 
 .directorio-card {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  transition: transform 0.3s ease;
+  background: #FFFFFF; /* Blanco sólido */
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgba(58, 50, 44, 0.05); /* */
+  
+  /* Flexbox para empujar contenido */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Asegura que todas las tarjetas midan lo mismo en la misma fila */
 }
+
 
 .directorio-card:hover {
   transform: translateY(-6px);
 }
 
-.directorio-card img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 20px;
+.directorio-card p:nth-of-type(1) {
+  flex-grow: 1; /* Este elemento (la experiencia) crecerá para ocupar el espacio disponible */
+  margin-bottom: 15px;
+  color: var(--dark); /* #3A322C */
 }
 
-.directorio-card h3 {
+.directorio-card p:last-of-type {
+  margin-top: auto; /* Empuja el nombre hasta el fondo de la tarjeta */
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: right;
+  opacity: 0.7;
+  color: var(--dark); /* */
+}
+
+.card-img-container {
+  width: 100%;
   margin-bottom: 15px;
 }
 
+.directorio-card img {
+  width: 100% !important;     /* Ocupa todo el ancho disponible */
+  height: 180px !important;    /* Altura fija para el rectángulo */
+  border-radius: 0 !important; /* ELIMINA EL CÍRCULO (0% redondeo) */
+  object-fit: cover;           /* Evita que el paisaje se deforme */
+  margin: 0 auto 15px auto;    /* Centrado y con espacio inferior */
+  border: none;                /* Elimina cualquier borde previo */
+}
+
+.directorio-card h3 {
+  color: var(--accent); /* #C0411F */
+  margin-bottom: 10px;
+}
+
 .directorio-card p {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  color: var(--dark); /* #3A322C - Marrón Oscuro */
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.bg-directorio {
+  background-color: var(--secondary); /* #F0E7D5 - Crema de tu paleta */
 }
 
 /* HERO ESTILO FONDO COMPLETO */
