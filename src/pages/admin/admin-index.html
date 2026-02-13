@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="../../css/admin.css" />
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="logo">
+      <img src="../../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo">
+      <span class="nanakeche">Nanakeche</span>
+    </div>
+
+<div class="user-actions">
+  <button class="menu-toggle">☰</button>
+
+  <a href="../../index.html">
+    <img src="../../Assets/slider2.png" alt="Avatar">
+  </a>
+
+</div>
+  </header>
+
+  <!-- MENÚ MÓVIL -->
+  <nav class="mobile-menu">
+    <a href="admin-index.html">Talleres</a>
+    <a href="directorio-admin.html">Directorio</a>
+    <a href="mapa-admin.html">Mapa</a>
+  </nav>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav>
+        <ul>
+          <li class="active"><a href="admin-index.html">Talleres</a></li>
+          <li><a href="directorio-admin.html">Directorio</a></li>
+          <li><a href="mapa-admin.html">Mapa</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- CONTENIDO -->
+    <main class="content">
+
+      <div class="content-header">
+        <h1>Gestión de Talleres</h1>
+        <button class="btn-primary">Nuevo Taller</button>
+      </div>
+
+      <div class="card">
+        <input type="text" class="search" placeholder="Buscar taller..." />
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Cupo</th>
+              <th>Costo</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tejedoras</td>
+              <td>Curso de tejer en tela</td>
+              <td>5/30</td>
+              <td>$1500</td>
+              <td><button class="btn-secondary">Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../../js/admin.js"></script>
+</body>
+</html>

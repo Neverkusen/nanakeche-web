@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Talleres | Nanakeche</title>
+
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<!-- NAV UNIFICADO -->
+<header class="navbar">
+  <div class="container">
+    <div  class="logo">
+      <img src="../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo" href="../index.html">
+      <h1 class="nanakeche">Nanakeche</h1>
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li class="active"><a href="talleres.html">Talleres</a></li>
+        <li><a href="directorio.html">Directorio</a></li>
+        <li><a href="mapa.html">Mapa</a></li>
+        <li><a href="about.html">Nosotras</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<h1 style="text-align:center; margin-top:40px;">Talleres y cursos</h1>
+
+<section class="talleres">
+
+  <!-- CARD -->
+  <div class="card">
+    <img src="https://s-media-cache-ak0.pinimg.com/originals/0a/47/52/0a4752a2cdfdd7c1314168c6a23b4447.jpg">
+    <h3>Pintura en taza</h3>
+    <p>Técnicas básicas de pintura.</p>
+    <span>Cupo máximo: 30</span>
+    <button onclick="openModal()">Inscribirse</button>
+  </div>
+
+  <div class="card disabled">
+    <img src="https://i0.wp.com/foodandpleasure.com/wp-content/uploads/2023/12/talleres-textiles-lunes-de-tejido-foto-tallerdoscoyotes.jpg?fit=1080%2C1080&ssl=1">
+    <h3>Tejido artesanal</h3>
+    <p>Introducción al tejido tradicional.</p>
+    <span>Cupo máximo: 30</span>
+    <button disabled>Agotado</button>
+  </div>
+
+  <div class="card">
+    <img src="https://zolta.me/wp-content/uploads/2023/07/Zolta-Ceramics-Studio-Pottery-Wheel-Workshop.jpg">
+    <h3>Cerámica básica</h3>
+    <p>Modelado y horneado.</p>
+    <span>Cupo máximo: 30</span>
+    <button onclick="openModal()">Inscribirse</button>
+  </div>
+
+  <div class="card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNuyTyPkqAZNgyccyi4vxoCniBCXLzthei3w&s">
+    <h3>Bordado creativo</h3>
+    <p>Diseño y técnicas modernas.</p>
+    <span>Cupo máximo: 30/span>
+    <button onclick="openModal()">Inscribirse</button>
+  </div>
+
+  <div class="card">
+    <img src="https://andanafoto.com/wp-content/uploads/2018/06/Taller-de-fotografia-juvenil-andanafoto.jpg">
+    <h3>Fotografía artesanal</h3>
+    <p>Captura con identidad cultural.</p>
+    <span>Cupo máximo: 30/span>
+    <button onclick="openModal()">Inscribirse</button>
+  </div>
+
+</section>
+
+<!-- BECAS (ORIGINAL RESPETADO) -->
+<section class="becas">
+  <h2>Becas Nanakeche</h2>
+  <p>
+    Apoyo para mujeres de Villa de Álvarez y Colima
+    en situación de vulnerabilidad.
+  </p>
+  <button>Solicitar beca</button>
+</section>
+
+</main>
+
+<!-- FOOTER UNIFICADO -->
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Nanakeche · Todos los derechos reservados</p>
+
+    <div class="social-links">
+      <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      <a href="./admin/admin-index.html"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODAL ORIGINAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h3>Inscripción al taller</h3>
+    <p>Formulario de inscripción aquí.</p>
+    <button onclick="closeModal()">Cerrar</button>
+  </div>
+</div>
+
+<script src="../js/script.js"></script>
+
+</body>
+</html>
