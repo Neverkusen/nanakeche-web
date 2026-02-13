@@ -12,7 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Lexend', sans-serif;
 }
 
 html, body {
@@ -75,8 +75,8 @@ body {
   text-decoration: none;
   color: var(--dark); /* Texto Marrón Oscuro */
   font-weight: 500;
-  font-family: 'Crimson Pro', serif; /* Tipografía para estilo artesanal */
-  font-size: 1.1rem;
+  font-family: 'Lexend', sans-serif; /* Tipografía para estilo artesanal */
+  font-size: 0.9rem;
 }
 
 .nav-links li.active a {
@@ -219,10 +219,12 @@ body {
 }
 
 .workshop-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 40px;
   justify-content: center;
   flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 
@@ -612,7 +614,7 @@ main {
 
 /* Reutilizamos el overlay de about para consistencia visual */
 .about-overlay h2 {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Lexend', sans-serif;
   font-size: 2.5rem;
   margin-bottom: 15px;
 }
@@ -776,7 +778,7 @@ main {
 }
 
 .floating-btn span {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Lexend', sans-serif;;
   font-weight: 700;
   font-size: 0.9rem;
 }
@@ -820,5 +822,4 @@ main {
   box-shadow: 0 6px 30px rgba(0, 0, 0, 0.4);
 }
 
-
-
+/*Estilos global*/
