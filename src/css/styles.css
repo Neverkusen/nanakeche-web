@@ -104,111 +104,180 @@ body {
   transform: scale(1.1); /* Efecto sutil al pasar el cursor sobre el corazón */
 }
 
-/* HERO FULL WIDTH */
-.hero-slider {
+/* HERO */
+.hero {
   position: relative;
-  width: 100%;
-  height: 75vh;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  display: none;             
-}
-
-.slide.active {
-  display: flex;              
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-
-.slide-content {
-  color: var(--dark);
-}
-
-.slide-content h2 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.slide-content p {
-  font-size: 1.3rem;
-  margin-bottom: 25px;
-}
-
-.btn {
-  background: var(--accent);
-  color: white;
-  padding: 12px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-}
-
-/* BOTONES SLIDER */
-.slider-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  font-size: 20px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.slider-btn.left {
-  left: 20px;
-}
-
-.slider-btn.right {
-  right: 20px;
-}
-
-/* BENEFICIOS */
-.benefits {
-  margin: 70px auto;
+  height: 100vh;
+  background: url("https://www.okchicas.com/wp-content/uploads/2016/11/Comprobado-por-salud-las-mujeres-necesitamos-salir-con-amigas-dos-veces-por-semana.jpg") center/cover no-repeat;
   display: flex;
-  gap: 30px;
-}
-
-.card {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  flex: 1;
-  text-align: center;
-}
-
-/* COMMUNITY SECTION */
-.community {
-  background: var(--primary);
+  align-items: center;
+  padding: 0 8%;
   color: white;
-  text-align: center;
-  padding: 20px 20px;
 }
 
-.community h2 {
-  font-size: 2.5rem;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.btn-principal {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 14px 28px;
+  background: #c64022;
+  color: white;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
   margin-bottom: 30px;
 }
 
-.community-btn {
-  background: var(--light);
-  padding: 12px 30px;
-  border-radius: 25px;
+.hero-btn {
+  background: var(--accent);
+  padding: 15px 30px;
+  border-radius: 30px;
   text-decoration: none;
-  color: var(--dark);
-  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
 }
+
+.hero-btn:hover {
+  transform: translateY(-4px);
+}
+
+/* ABOUT PREVIEW */
+.about-section img {
+  width: 55%;
+  border-radius: 30px;
+}
+
+.about-card {
+  background: white;
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  max-width: 500px;
+}
+
+.btn-secundario {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 12px 22px;
+  background: #c64022;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+/* WORKSHOPS */
+.featured-workshops {
+  padding: 50px 0;
+  background: var(--secondary);
+}
+
+.workshop-grid {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+.workshop-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  margin-top: 50px;
+  
+}
+
+.workshop-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.workshop-card h3,
+.workshop-card p {
+  padding: 20px;
+}
+
+
+
+/* GALLERY */
+.community-gallery {
+  padding: 120px 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 15px;
+  height: 220px;
+  object-fit: cover;
+}
+
+/* IMPACT */
+.impact {
+  padding: 100px 0;
+  background: white;
+}
+
+.impact-grid {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.impact h3 {
+  font-size: 2.5rem;
+  color: var(--accent);
+}
+
+/* TESTIMONIAL */
+.testimonial {
+  background: var(--primary);
+  padding: 120px 20px;
+  text-align: center;
+  color: white;
+}
+
+.testimonial h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* FINAL CTA */
+.final-cta {
+  padding: 75px 20px;
+  text-align: center;
+  background: var(--secondary);
+}
+
 
 /* FOOTER */
 footer {
@@ -315,30 +384,75 @@ main {
   opacity: 0.6;
 }
 
-/* ===== SECCIÓN BECAS ===== */
+/* ======================
+   SECCIÓN BECAS
+====================== */
 
-.becas {
-  background: var(--primary);
-  color: white;
+.becas-section {
+  background-color: #D6CBB7; /* mismo fondo beige */
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.becas-container {
+  background-color: #E8DFCF; /* tono más claro tipo "programa de apoyo" */
+  max-width: 900px;
+  width: 100%;
+  padding: 60px 50px;
+  border-radius: 40px;
   text-align: center;
-  padding: 20px 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
-.becas h2 {
-  margin-bottom: 15px;
-}
-
-.becas p {
+.becas-badge {
+  display: inline-block;
+  background-color: #D6CBB7;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
   margin-bottom: 20px;
 }
 
-.becas button {
-  background: var(--light);
-  border: none;
-  padding: 12px 30px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: 600;
+.becas-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.becas-text {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.becas-text-secondary {
+  font-size: 1rem;
+  margin-bottom: 35px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.becas-btn {
+  display: inline-block;
+  background-color: #C83F1F;
+  color: white;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.becas-btn:hover {
+  background-color: #a93419;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.becas-note {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 /* ===== MODAL ===== */
@@ -541,6 +655,37 @@ main {
   margin-bottom: 8px;
   font-weight: 500;
 }
+
+/* NUEVA ABOUT SUPERPUESTA */
+
+
+.about-img-container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.about-img-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 35px;
+}
+
+.about-card-overlay {
+  position: absolute;
+  top: 50%;
+  left: -100px; 
+  transform: translateY(-50%);
+  background: white;
+  padding: 50px;
+  border-radius: 30px;
+  max-width: 420px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.18);
+}
+
+
 
 
 /* VALORES */

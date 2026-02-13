@@ -1,132 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin - Mapa</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Mapa</title>
 
-  <!-- CSS ADMIN -->
-  <link rel="stylesheet" href="../../css/admin.css">
+    <!-- CSS ADMIN -->
+    <link rel="stylesheet" href="../../css/admin.css" />
 
-  <!-- Leaflet -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-</head>
+    <!-- Leaflet -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+  </head>
 
-<body>
-
-<!-- TOPBAR -->
-<header class="topbar">
-  <div class="logo">
-    <img src="../../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo">
-    <span class="nanakeche">Nanakeche</span>
-  </div>
-
-<div class="user-actions">
-  <button class="menu-toggle">☰</button>
-
-  <a href="../../index.html">
-    <img src="../../Assets/slider2.png" alt="Avatar">
-  </a>
-
-</div>
-</header>
-
-<!-- MENÚ MÓVIL -->
-<nav class="mobile-menu">
-  <a href="admin-index.html">Talleres</a>
-  <a href="directorio-admin.html">Directorio</a>
-  <a href="mapa-admin.html">Mapa</a>
-</nav>
-
-<div class="layout">
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <nav>
-      <ul>
-        <li><a href="admin-index.html">Talleres</a></li>
-        <li><a href="directorio-admin.html">Directorio</a></li>
-        <li class="active"><a href="mapa-admin.html">Mapa</a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <!-- CONTENIDO -->
-  <main class="content">
-
-    <h2>Mapa</h2>
-
-    <div class="map-wrap">
-      <div id="map"></div>
-    </div>
-
-    <h2>Peticiones</h2>
-
-    <section class="peticiones-panel">
-
-      <div class="pet-row">
-        <p>
-          Fue una experiencia muy agradable y enriquecedora.
-          Me sentí bienvenida y aprendí cosas nuevas.
-        </p>
-        <div class="actions">
-          <button class="btn-secondary">Aprobar</button>
-          <button class="btn-secondary">Rechazar</button>
-        </div>
+  <body>
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="logo">
+        <img src="../../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo" />
+        <span class="nanakeche">Nanakeche</span>
       </div>
 
+      <div class="user-actions">
+        <button class="menu-toggle">☰</button>
 
-    </section>
+        <a href="../../index.html">
+          <img src="../../Assets/slider2.png" alt="Avatar" />
+        </a>
+      </div>
+    </header>
 
-  </main>
+    <!-- MENÚ MÓVIL -->
+    <nav class="mobile-menu">
+      <a href="admin-index.html">Talleres</a>
+      <a href="directorio-admin.html">Directorio</a>
+      <a href="mapa-admin.html">Mapa</a>
+    </nav>
 
-</div>
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <nav>
+          <ul>
+            <li><a href="admin-index.html">Talleres</a></li>
+            <li><a href="directorio-admin.html">Directorio</a></li>
+            <li class="active"><a href="mapa-admin.html">Mapa</a></li>
+          </ul>
+        </nav>
+      </aside>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+      <!-- CONTENIDO -->
+      <main class="content">
+        <h2>Mapa</h2>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+        <div class="map-wrap">
+          <div id="map"></div>
+        </div>
 
-    const colimaBounds = L.latLngBounds(
-      [18.7, -104.7],
-      [19.6, -103.3]
-    );
+        <h2>Peticiones</h2>
 
-    const map = L.map("map", {
-      maxBounds: colimaBounds,
-      maxBoundsViscosity: 1,
-      zoomControl: true
-    });
+        <section class="peticiones-panel">
+          <div class="pet-row">
+            <p>
+              Fue una experiencia muy agradable y enriquecedora. Me sentí
+              bienvenida y aprendí cosas nuevas.
+            </p>
+            <div class="actions">
+              <button class="btn-secondary">Aprobar</button>
+              <button class="btn-secondary">Rechazar</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 18
-    }).addTo(map);
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-    map.fitBounds(colimaBounds, { padding: [20, 20] });
-    map.setMinZoom(map.getZoom());
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const colimaBounds = L.latLngBounds([18.7, -104.7], [19.6, -103.3]);
 
-    L.marker([19.2468, -103.7268])
-      .addTo(map)
-      .bindPopup("Evento comunitario en Colima.<br> Un espacio lleno de aprendizaje.")
-      .openPopup();
+        const map = L.map("map", {
+          maxBounds: colimaBounds,
+          maxBoundsViscosity: 1,
+          zoomControl: true,
+        });
 
-    L.marker([19.2385, -103.7165])
-      .addTo(map)
-      .bindPopup("Punto de encuentro para actividades culturales.");
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 18,
+        }).addTo(map);
 
-    L.marker([19.2522, -103.7186])
-      .addTo(map)
-      .bindPopup("Lugar recomendado para visitar en familia.");
+        map.fitBounds(colimaBounds, { padding: [20, 20] });
+        map.setMinZoom(map.getZoom());
 
-    map.whenReady(() => map.invalidateSize());
-  });
-</script>
+        // 💖 Icono girly
+        const girlyIcon = L.divIcon({
+          html: `<div style="
+        font-size: 30px;
+        text-align: center;
+        line-height: 30px;
+      ">🌸</div>`,
+          className: "",
+          iconSize: [30, 30],
+          iconAnchor: [15, 30],
+        });
 
-<script src="../../js/admin.js"></script>
+        L.marker([19.2468, -103.7268], { icon: girlyIcon })
+          .addTo(map)
+          .bindPopup(
+            "Evento comunitario en Colima.<br> Un espacio lleno de aprendizaje.",
+          )
+          .openPopup();
 
-</body>
+        L.marker([19.2385, -103.7165], { icon: girlyIcon })
+          .addTo(map)
+          .bindPopup("Punto de encuentro para actividades culturales.");
+
+        L.marker([19.2522, -103.7186], { icon: girlyIcon })
+          .addTo(map)
+          .bindPopup("Lugar recomendado para visitar en familia.");
+
+        map.whenReady(() => map.invalidateSize());
+      });
+    </script>
+
+    <script src="../../js/admin.js"></script>
+  </body>
 </html>
