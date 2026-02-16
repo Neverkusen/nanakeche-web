@@ -27,7 +27,7 @@ body {
 /* NAVBAR */
 .navbar {
   background: var(--primary); /* #FFAFAA */
-  padding: 12px 60px;
+  padding: 19px 60px;
   min-height: 10px;
   position: fixed;    /* Lo mantiene en la pantalla */
   top: 0;             /* Posición inicial */
