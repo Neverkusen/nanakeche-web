@@ -9,15 +9,17 @@
 
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-</head>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<body>
+  </head>
+
+<body class="bg-directorio">
 
 <!-- NAV UNIFICADO -->
 <header class="navbar">
   <div class="container">
     <div  class="logo">
-      <img src="../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo" href="../index.html">
+      <img src="../Assets/Nanakeche_logo_Sn_fondo.png" alt="Logo">
       <h1 class="nanakeche">Nanakeche</h1>
     </div>
     <nav>
@@ -33,8 +35,21 @@
 </header>
 
 <main>
+<!--
+<h1 style="text-align:center; margin-top:40px;">Talleres y cursos</h1>-->
 
-<h1 style="text-align:center; margin-top:40px;">Talleres y cursos</h1>
+<section class="taller-hero">
+  <div class="taller-overlay">
+    <h2>Talleres & Cursos</h2>
+    <p>
+      Cada taller es una oportunidad para encontrarnos, dialogar y crear juntas.
+    </p>
+    <p>
+      Nanakeche es un laboratorio social itinerante donde el conocimiento se construye en colectivo.
+    </p>
+  </div>
+</section>
+
 
 <section class="talleres">
 
@@ -67,7 +82,7 @@
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNuyTyPkqAZNgyccyi4vxoCniBCXLzthei3w&s">
     <h3>Bordado creativo</h3>
     <p>Diseño y técnicas modernas.</p>
-    <span>Cupo máximo: 30/span>
+    <span>Cupo máximo: 30</span>
     <button onclick="openModal()">Inscribirse</button>
   </div>
 
@@ -75,33 +90,84 @@
     <img src="https://andanafoto.com/wp-content/uploads/2018/06/Taller-de-fotografia-juvenil-andanafoto.jpg">
     <h3>Fotografía artesanal</h3>
     <p>Captura con identidad cultural.</p>
-    <span>Cupo máximo: 30/span>
+    <span>Cupo máximo: 30</span>
     <button onclick="openModal()">Inscribirse</button>
   </div>
 
 </section>
 
 <!-- BECAS (ORIGINAL RESPETADO) -->
-<section class="becas">
-  <h2>Becas Nanakeche</h2>
-  <p>
-    Apoyo para mujeres de Villa de Álvarez y Colima
-    en situación de vulnerabilidad.
-  </p>
-  <button>Solicitar beca</button>
+<section class="becas-section">
+  <div class="becas-container">
+
+    <span class="becas-badge">Programa de apoyo</span>
+
+    <h2>Becas Nanakeche</h2>
+
+    <p class="becas-text">
+      En Nanakeche creemos que todas las mujeres merecen un espacio seguro para crear,
+      aprender y crecer.
+    </p>
+
+    <p class="becas-text-secondary">
+      Si actualmente atraviesas una situación económica difícil,
+      puedes postularte para una beca y formar parte de nuestra comunidad.
+      Queremos que ninguna mujer se quede fuera por motivos económicos.
+    </p>
+
+    <a href="#" class="becas-btn">
+      Postularme a una beca
+    </a>
+
+    <p class="becas-note">
+      Las solicitudes son confidenciales y evaluadas con respeto y empatía.
+    </p>
+
+  </div>
 </section>
+
+
 
 </main>
 
 <!-- FOOTER UNIFICADO -->
 <footer class="footer">
-  <div class="footer-content">
-    <p>© 2026 Nanakeche · Todos los derechos reservados</p>
+  <div class="footer-container">
 
-    <div class="social-links">
-      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-      <a href="./admin/admin-index.html"><i class="fa-brands fa-whatsapp"></i></a>
+    <div class="footer-col">
+      <h4>Nanakeche</h4>
+      <img src="../Assets/Nanakeche_logo_Sn_fondo.png"
+       alt="Logo Nanakeche"
+       class="footer-logo">
+      <p>Floreciendo en comunidad.</p>
+      <p>© 2026 Nanakeche · Todos los derechos reservados</p>
     </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Aviso de privacidad</a></li>
+        <li><a href="#">Políticas de uso</a></li>
+        <li><a href="#">Aviso de datos personales</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Declaración de accesibilidad</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <p><i class="fa-solid fa-envelope"></i> hannahsofiaeg@gmail.com</p>
+      <p><i class="fa-solid fa-phone"></i> (312) 135 0939</p>
+      <div class="social-links">
+        <a href="https://www.instagram.com/nanakeche_06" target="_blank">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="./admin/admin-index.html">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
   </div>
 </footer>
 
@@ -115,6 +181,6 @@
 </div>
 
 <script src="../js/script.js"></script>
-
+<script src="../js/nav.js"></script>
 </body>
 </html>
