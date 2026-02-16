@@ -317,7 +317,8 @@
     </div>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="../js/leaftlet-tilelayer-colorfilter-global.min.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
     <script>
@@ -331,9 +332,17 @@
           zoomControl: true,
         });
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
           maxZoom: 18,
-        }).addTo(map);
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          colorFilter: [
+            "grayscale:20%",
+            "brightness:115%",
+            "saturate:90%",
+            "hue:530deg"
+          ],
+          }).addTo(map);
 
         map.fitBounds(colimaBounds, { padding: [20, 20] });
         map.setMinZoom(map.getZoom());
